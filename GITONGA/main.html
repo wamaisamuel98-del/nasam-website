@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizza Market</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Poppins,sans-serif;
+  background:black;
+  color:white;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 20px;
+  background:#111;
+}
+header h1{
+  color:red;
+  text-transform:uppercase;
+}
+nav a{
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+}
+nav a:hover{color:#0acfb5}
+
+/* HERO */
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  padding:40px;
+}
+.hero h2{
+  font-family:Lobster,cursive;
+  font-size:42px;
+  color:orange;
+}
+.hero img{
+  width:250px;
+  border-radius:50%;
+}
+
+/* MENU */
+.menu h2,
+.section-title{
+  text-align:center;
+  font-family:Lobster,cursive;
+  font-size:40px;
+  color:orange;
+}
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
+}
+.menu-item{
+  text-align:center;
+}
+.menu-item img{
+  width:200px;
+  height:200px;
+  border-radius:50%;
+}
+.menu-item button{
+  margin-top:10px;
+  padding:10px 20px;
+  background:#ff6b6b;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+
+/* ORDER */
+.order{
+  background:#1a1a1a;
+  padding:40px;
+}
+.order-form{
+  max-width:450px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+.order-form input,
+.order-form select{
+  padding:12px;
+  border:none;
+  border-radius:5px;
+}
+.order-form button{
+  background:#0acfb5;
+  border:none;
+  padding:12px;
+  font-size:18px;
+  cursor:pointer;
+}
+#total{
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+}
+
+/* SERVICES */
+.services{
+  padding:40px;
+  text-align:center;
+}
+.services-container{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.service-item{
+  background:#1a1a1a;
+  padding:20px;
+  width:200px;
+  border-radius:10px;
+}
+.service-item i{
+  font-size:35px;
+  color:#ff6b6b;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.8);
+  justify-content:center;
+  align-items:center;
+}
+.modal-content{
+  background:#2c2c2c;
+  padding:25px;
+  border-radius:10px;
+  text-align:center;
+}
+.modal-content a{
+  display:inline-block;
+  background:#25d366;
+  padding:12px 20px;
+  color:white;
+  text-decoration:none;
+  margin-top:15px;
+}
+.modal-content button{
+  margin-top:10px;
+  background:#ff6b6b;
+  border:none;
+  padding:10px 15px;
+  color:white;
+  cursor:pointer;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .hero{flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Pizza Market</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#menu">Menu</a>
+<a href="#order">Order</a>
+<a href="#services">Services</a>
+</nav>
+</header>
+
+<section class="hero">
+<h2>Hot Fresh & Delicious Pizza</h2>
+<img src="images/gr.png" alt="Pizza">
+</section>
+
+<section class="menu" id="menu">
+<h2>Our Menu</h2>
+<div class="menu-grid">
+
+<div class="menu-item">
+<img src="images/hawain.png">
+<p>Hawaiian – 600 Ksh</p>
+<button data-pizza="hawaiian">Order Now</button>
+</div>
+
+<div class="menu-item">
+<img src="images/margherita.png">
+<p>Margherita – 400 Ksh</p>
+<button data-pizza="margherita">Order Now</button>
+</div>
+
+<div class="menu-item">
+<img src="images/meat-lovers.png">
+<p>Meat Lovers – 700 Ksh</p>
+<button data-pizza="meat-lovers">Order Now</button>
+</div>
+
+<div class="menu-item">
+<img src="images/peproni.png">
+<p>Pepperoni – 500 Ksh</p>
+<button data-pizza="peproni">Order Now</button>
+</div>
+
+<div class="menu-item">
+<img src="images/vegeterian.png">
+<p>Vegetarian – 450 Ksh</p>
+<button data-pizza="vegeterian">Order Now</button>
+</div>
+
+<div class="menu-item">
+<img src="images/bbq.png">
+<p>BBQ – 800 Ksh</p>
+<button data-pizza="bbq">Order Now</button>
+</div>
+
+</div>
+</section>
+
+<section class="order" id="order">
+<h2 class="section-title">Place Your Order</h2>
+
+<form class="order-form">
+<input id="name" placeholder="Your Name" required>
+<input id="phone" placeholder="Phone Number" required>
+
+<select id="pizza-select" required>
+<option value="">Select Pizza</option>
+<option value="hawaiian">Hawaiian – 600</option>
+<option value="margherita">Margherita – 400</option>
+<option value="meat-lovers">Meat Lovers – 700</option>
+<option value="peproni">Pepperoni – 500</option>
+<option value="vegeterian">Vegetarian – 450</option>
+<option value="bbq">BBQ – 800</option>
+</select>
+
+<input type="number" id="qty" min="1" value="1">
+<p id="total">Total: 0 Ksh</p>
+
+<button>Confirm Order</button>
+</form>
+</section>
+
+<section class="services" id="services">
+<h2 class="section-title">Our Services</h2>
+<div class="services-container">
+<div class="service-item"><i class="fas fa-utensils"></i><p>Dine In</p></div>
+<div class="service-item"><i class="fas fa-motorcycle"></i><p>Delivery</p></div>
+<div class="service-item"><i class="fas fa-shopping-bag"></i><p>Take Away</p></div>
+</div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<p id="summary"></p>
+<a id="whatsapp" target="_blank">Send Order via WhatsApp</a><br>
+<p>Pay via M-Pesa (Pochi la Biashara)<br><b>0740324817</b></p>
+<button onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+const prices={
+hawaiian:600,
+margherita:400,
+"meat-lovers":700,
+peproni:500,
+vegeterian:450,
+bbq:800
+};
+
+const pizzaSelect=document.getElementById("pizza-select");
+const qty=document.getElementById("qty");
+const total=document.getElementById("total");
+
+function updateTotal(){
+  if(pizzaSelect.value){
+    total.textContent=
+    "Total: "+(prices[pizzaSelect.value]*qty.value)+" Ksh";
+  }
+}
+pizzaSelect.onchange=updateTotal;
+qty.oninput=updateTotal;
+
+document.querySelectorAll(".menu-item button").forEach(btn=>{
+  btn.onclick=()=>{
+    pizzaSelect.value=btn.dataset.pizza;
+    updateTotal();
+    document.getElementById("order")
+    .scrollIntoView({behavior:"smooth"});
+  };
+});
+
+document.querySelector(".order-form").onsubmit=e=>{
+  e.preventDefault();
+
+  const name=document.getElementById("name").value;
+  const phone=document.getElementById("phone").value;
+  const pizza=pizzaSelect.value;
+  const quantity=qty.value;
+  const amount=prices[pizza]*quantity;
+
+  summary.innerHTML=
+  `Thank you <b>${name}</b><br>
+  Pizza: ${pizza}<br>
+  Quantity: ${quantity}<br>
+  <b>Total: ${amount} Ksh</b>`;
+
+  const message=
+`🍕 PIZZA ORDER
+Name: ${name}
+Phone: ${phone}
+Pizza: ${pizza}
+Qty: ${quantity}
+Total: ${amount} Ksh`;
+
+  whatsapp.href=
+  "https://wa.me/254740324817?text="+encodeURIComponent(message);
+
+  modal.style.display="flex";
+};
+
+function closeModal(){
+  modal.style.display="none";
+}
+</script>
+
+</body>
+</html>
